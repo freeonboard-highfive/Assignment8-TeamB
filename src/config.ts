@@ -1,1 +1,3 @@
-export const a = {};
+export const STORAGE_KEYS = {
+  todos: 'todos',
+};
