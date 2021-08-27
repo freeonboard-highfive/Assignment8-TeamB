@@ -11,6 +11,7 @@ export interface Itodo {
   createdAt: Date;
   updatedAt: Date;
   isImportant: boolean;
+  isVisible: boolean;
 }
 
 export const OPTIONS = [Status.todo, Status.progress, Status.done];
