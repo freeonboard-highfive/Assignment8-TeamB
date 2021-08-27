@@ -7,16 +7,29 @@ import { TodoCreate, TodoFilter } from 'components/todo';
 interface ITodoHeadProps {
   createTodo: (value: string) => void;
   sortTodo: () => void;
+  handleFilterStatus: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleFilterImportant: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setFilteredResult: () => void;
 }
 
-const TodoHead: React.FC<ITodoHeadProps> = ({ createTodo, sortTodo }) => {
+const TodoHead: React.FC<ITodoHeadProps> = ({
+  createTodo,
+  sortTodo,
+  handleFilterStatus,
+  handleFilterImportant,
+  setFilteredResult,
+}) => {
   const curDate = getCurrentDate();
 
   return (
     <header css={Header}>
       <h1>{curDate}</h1>
       <TodoCreate createTodo={createTodo} />
-      <TodoFilter />
+      <TodoFilter
+        handleFilterStatus={handleFilterStatus}
+        handleFilterImportant={handleFilterImportant}
+        setFilteredResult={setFilteredResult}
+      />
       <button onClick={sortTodo}>생성일 순 정렬</button>
     </header>
   );

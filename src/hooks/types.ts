@@ -1,4 +1,3 @@
-import { Status } from 'components/todo/type';
 import React from 'react';
 
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
@@ -39,11 +38,6 @@ export interface IuseModal {
   contents: ImodalContents;
   openModal: (contents: ImodalContents) => void;
   closeModal: () => void;
-}
-
-export interface IfilterOption {
-  status: Status[];
-  isImportant: string[];
 }
 
 export enum ButtonType {

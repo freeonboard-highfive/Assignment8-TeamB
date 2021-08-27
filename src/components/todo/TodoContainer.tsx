@@ -1,10 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { COLOR_STYLE } from 'styles';
+import useFilter from 'hooks/useFilter';
 import { Status } from './type';
 import { TodoList, TodoHead, TodoBoundary, useTodo } from 'components/todo';
-import useFilter from 'hooks/useFilter';
-import Filter from './Filter';
 
 const TodoContainer: React.FC = () => {
   const {
@@ -18,19 +17,23 @@ const TodoContainer: React.FC = () => {
   } = useTodo();
 
   const undoneTodos: number = todos.filter((todo) => todo.status !== Status.done).length;
-  const { filteredItem, filterOption, filterClicked, handleCheck, setFilteredResult } =
-    useFilter(todos);
+  const { handleFilterStatus, handleFilterImportant, setFilteredResult } = useFilter(
+    todos,
+    setTodos,
+  );
 
   return (
     <div css={Container}>
-      <TodoHead createTodo={createTodo} sortTodo={sortTodo} />
+      <TodoHead
+        createTodo={createTodo}
+        sortTodo={sortTodo}
+        handleFilterStatus={handleFilterStatus}
+        handleFilterImportant={handleFilterImportant}
+        setFilteredResult={setFilteredResult}
+      />
       <TodoBoundary undoneTasks={undoneTodos} />
-      <Filter handleCheck={handleCheck} setFilteredResult={setFilteredResult} />
       <TodoList
         todos={todos}
-        filteredItem={filteredItem}
-        filterOption={filterOption}
-        filterClicked={filterClicked}
         setTodos={setTodos}
         handleDeleteTodo={handleDeleteTodo}
         changeTodoStatus={changeTodoStatus}

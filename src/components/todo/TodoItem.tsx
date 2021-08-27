@@ -58,7 +58,15 @@ const TodoItem: React.FC<Iprop> = ({ ...props }) => {
 
   return (
     <li
-      css={isDragOver ? ListHover : ListStyle}
+      css={
+        isDragOver
+          ? todo.isVisible
+            ? ListHover
+            : noDisplay
+          : todo.isVisible
+          ? ListStyle
+          : noDisplay
+      }
       draggable
       onDragStart={() => handleDragStart(index)}
       onDragEnter={() => handleDragEnter(index)}
@@ -163,4 +171,8 @@ const DeleteButton = css`
       transform: rotate(-90deg);
     }
   }
+`;
+
+const noDisplay = css`
+  display: none;
 `;
