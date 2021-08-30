@@ -30,13 +30,11 @@ const Container = css`
 
 const SortBtn = css`
   ${MainBtn}
-
   &:hover {
     transform: translateY(0);
     background-color: ${COLOR_STYLE.primary};
     color: ${COLOR_STYLE.white};
   }
-
   &:active {
     transform: translateY(-3px);
   }
